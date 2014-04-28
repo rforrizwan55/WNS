@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		expListView = (ExpandableListView) findViewById(R.id.lvExp);
-
+		//getActionBar().setTitle("text");
 		try {
 			result = new WebService().execute(
 					"http://rizapps-arizwan.rhcloud.com/news/getAll.php",
@@ -130,5 +131,7 @@ public class MainActivity extends Activity {
 		}
 		return categories;
 	}
+	
+	
 
 }
