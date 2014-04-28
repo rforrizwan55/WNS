@@ -64,6 +64,9 @@ public class MainActivity extends Activity {
 									.get(childPosition), result);
 					Intent intent = new Intent(MainActivity.this,NewsList.class);
 					intent.putExtra("newsdata", intentObject);
+					intent.putExtra("cname", listDataChild
+									.get(listDataHeader.get(groupPosition))
+									.get(childPosition));
 					Log.d("intentObject", intentObject.toString());
 					startActivity(intent);
 				} catch (JSONException e) {

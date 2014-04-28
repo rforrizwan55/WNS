@@ -2,10 +2,12 @@ package com.rizwan.worldnewsstand;
 
 import java.util.ArrayList;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LocalActivityManager;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.TabHost.TabSpec;
 
 public class NewsList extends Activity {
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -26,7 +29,7 @@ public class NewsList extends Activity {
 		LocalActivityManager mLocalActivityManager = new LocalActivityManager(
 				this, false);
 		mLocalActivityManager.dispatchCreate(savedInstanceState);
-
+		getActionBar().setTitle(intent.getExtras().getCharSequence("cname"));
 		Log.d("newsdata", list.toString());
 		TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
 		tabHost.setup(mLocalActivityManager);
