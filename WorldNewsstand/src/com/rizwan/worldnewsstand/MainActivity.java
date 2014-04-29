@@ -11,6 +11,7 @@ import org.json.JSONException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -35,8 +36,8 @@ public class MainActivity extends Activity {
 		expListView = (ExpandableListView) findViewById(R.id.lvExp);
 		//getActionBar().setTitle("text");
 		try {
-			result = new WebService().execute(
-					"http://rizapps-arizwan.rhcloud.com/news/getAll.php",
+			result = new WebService(this).execute(
+					"http://rizapps-arizwan.rhcloud.com/news/getAll.php?attribute=country&value=india",
 					"test", "test").get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -134,7 +135,4 @@ public class MainActivity extends Activity {
 		}
 		return categories;
 	}
-	
-	
-
 }
