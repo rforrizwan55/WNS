@@ -28,6 +28,7 @@
         </activity>
          <activity android:name=".NewsList" />
           <activity android:name=".NewsListActivity" />
+            <activity android:name=".DetailActivity" />
     </application>
 
 </manifest>

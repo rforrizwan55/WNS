@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,6 +42,24 @@ public class NewsListActivity extends Activity {
 		}
 		adapter = new CustomListAdapter(this,feeds);
 		feedsListView.setAdapter(adapter);
+		feedsListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				int pos = arg2;
+
+				Bundle bundle = new Bundle();
+				bundle.putSerializable("feed", feeds);
+				Intent intent = new Intent(NewsListActivity.this,
+						DetailActivity.class);
+				intent.putExtras(bundle);
+				intent.putExtra("pos", pos);
+				startActivity(intent);
+				
+			}
+		});
 		
 	}
 	
