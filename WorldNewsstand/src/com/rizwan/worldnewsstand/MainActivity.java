@@ -28,12 +28,24 @@ public class MainActivity extends Activity {
 	HashMap<String, List<String>> listDataChild;
 	JSONArray result = null;
 	ArrayList<CategoryObject> intentObject = null;
+	Boolean resultupdate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		expListView = (ExpandableListView) findViewById(R.id.lvExp);
+		try {
+			resultupdate = new CheckUpdateData(this).execute(
+					"http://rizapps-arizwan.rhcloud.com/news/getUpdate.php?attribute=true",
+					"test", "test").get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//getActionBar().setTitle("text");
 		try {
 			result = new WebService(this).execute(
@@ -46,6 +58,8 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		Log.d("resultdata", result.toString());
 		prepareListData(result);
 		listAdapter = new ExpandableListAdapter(this, listDataHeader,

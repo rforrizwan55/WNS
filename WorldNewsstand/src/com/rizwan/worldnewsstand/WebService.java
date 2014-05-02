@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,6 +26,7 @@ import android.util.Log;
 
 public class WebService extends AsyncTask<String, String, JSONArray> {
 	public Activity ma;
+	 Boolean resultupdate=true;
 	public WebService(Activity act)
 	{
 		this.ma = act;
@@ -33,6 +35,18 @@ public class WebService extends AsyncTask<String, String, JSONArray> {
 	@Override
 	protected JSONArray doInBackground(String... params) {
 		// TODO Auto-generated method stub
+		
+		if(resultupdate)
+		{
+			File cacheDir = ma.getCacheDir();
+
+			File[] files = cacheDir.listFiles();
+
+			if (files != null) {
+			    for (File file : files)
+			       file.delete();
+			}
+		}
 		String result = "";
 		String urlString = params[0];
 		String methodName = urlString.substring(urlString.lastIndexOf('/') + 1,
